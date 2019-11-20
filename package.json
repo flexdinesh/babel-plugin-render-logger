@@ -1,0 +1,24 @@
+{
+  "name": "babel-plugin-react-render-logger",
+  "version": "0.1.0",
+  "description": "Babel plugin that automatically adds a console statement to React components and makes debugging easier",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "keywords": [
+    "react",
+    "babel",
+    "plugin",
+    "logger"
+  ],
+  "author": "flexdinesh@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-react-jsx": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0"
+  }
+}

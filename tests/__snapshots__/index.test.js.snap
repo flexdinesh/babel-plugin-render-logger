@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add log statement to React Components ArrowFunctionExpression with BlockStatement 1`] = `
+"const HelloWorld = () => {
+  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+};"
+`;
+
+exports[`Add log statement to React Components ArrowFunctionExpression with implicit return 1`] = `
+"const HelloWorld = props => {
+  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+};"
+`;
+
+exports[`Add log statement to React Components Class Component with render method 1`] = `
+"class HelloWorld extends React.Component {
+  render() {
+    console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+    return React.createElement(\\"span\\", null, \\"Hello World\\");
+  }
+
+}"
+`;
+
+exports[`Add log statement to React Components FunctionDelaration with BlockStatement 1`] = `
+"function HelloWorld() {
+  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+}"
+`;
+
+exports[`Add log statement to React Components FunctionExpression with BlockStatement 1`] = `
+"const HelloWorld = function () {
+  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+};"
+`;
