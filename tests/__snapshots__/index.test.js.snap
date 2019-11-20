@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Add log statement based on config name doesn't match component name - should not include logger 1`] = `
+"const HelloWorld = () => {
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+};"
+`;
+
+exports[`Add log statement based on config name is not passed - should include logger 1`] = `
+"const HelloWorld = () => {
+  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+};"
+`;
+
+exports[`Add log statement based on config name matches full component name - should include logger 1`] = `
+"const HelloWorld = () => {
+  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+};"
+`;
+
+exports[`Add log statement based on config name matches multiple strings - should include logger 1`] = `
+"const HelloWorld = () => {
+  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+};"
+`;
+
+exports[`Add log statement based on config name matches part component name - should include logger 1`] = `
+"const HelloWorld = () => {
+  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  return React.createElement(\\"span\\", null, \\"Hello World\\");
+};"
+`;
+
 exports[`Add log statement to React Components ArrowFunctionExpression with BlockStatement 1`] = `
 "const HelloWorld = () => {
   console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");

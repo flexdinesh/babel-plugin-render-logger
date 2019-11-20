@@ -1,9 +1,9 @@
 import { transformSync } from '@babel/core';
 import reactRenderLogger from '../index';
 
-const defaultTestConfig = {
-  plugins: ['@babel/plugin-transform-react-jsx', reactRenderLogger]
-};
+const getTestConfig = (opts = {}) => ({
+  plugins: ['@babel/plugin-transform-react-jsx', [reactRenderLogger, opts]]
+});
 
 describe('Add log statement to React Components', () => {
   test('ArrowFunctionExpression with BlockStatement', () => {
@@ -12,16 +12,15 @@ describe('Add log statement to React Components', () => {
         return <span>Hello World</span>;
       };
     `;
-    const { code } = transformSync(codeLiteral, defaultTestConfig);
+    const { code } = transformSync(codeLiteral, getTestConfig());
     expect(code).toMatchSnapshot();
   });
 
-  // THIS DOESN'T WORK YET
   test('ArrowFunctionExpression with implicit return', () => {
     const codeLiteral = `
       const HelloWorld = (props) => <span>Hello World</span>;
     `;
-    const { code } = transformSync(codeLiteral, defaultTestConfig);
+    const { code } = transformSync(codeLiteral, getTestConfig());
 
     expect(code).toMatchSnapshot();
   });
@@ -32,7 +31,7 @@ describe('Add log statement to React Components', () => {
         return <span>Hello World</span>;
       }
     `;
-    const { code } = transformSync(codeLiteral, defaultTestConfig);
+    const { code } = transformSync(codeLiteral, getTestConfig());
 
     expect(code).toMatchSnapshot();
   });
@@ -43,7 +42,7 @@ describe('Add log statement to React Components', () => {
         return <span>Hello World</span>;
       }
     `;
-    const { code } = transformSync(codeLiteral, defaultTestConfig);
+    const { code } = transformSync(codeLiteral, getTestConfig());
 
     expect(code).toMatchSnapshot();
   });
@@ -56,8 +55,64 @@ describe('Add log statement to React Components', () => {
         }
       }
     `;
-    const { code } = transformSync(codeLiteral, defaultTestConfig);
+    const { code } = transformSync(codeLiteral, getTestConfig());
 
+    expect(code).toMatchSnapshot();
+  });
+});
+
+describe('Add log statement based on config', () => {
+  test('name matches full component name - should include logger', () => {
+    const codeLiteral = `
+      const HelloWorld = () => {
+        return <span>Hello World</span>;
+      };
+    `;
+    const opts = { name: 'HelloWorld' };
+    const { code } = transformSync(codeLiteral, getTestConfig(opts));
+    expect(code).toMatchSnapshot();
+  });
+
+  test('name matches part component name - should include logger', () => {
+    const codeLiteral = `
+      const HelloWorld = () => {
+        return <span>Hello World</span>;
+      };
+    `;
+    const opts = { name: 'Hello' };
+    const { code } = transformSync(codeLiteral, getTestConfig(opts));
+    expect(code).toMatchSnapshot();
+  });
+
+  test("name doesn't match component name - should not include logger", () => {
+    const codeLiteral = `
+      const HelloWorld = () => {
+        return <span>Hello World</span>;
+      };
+    `;
+    const opts = { name: 'Oohlaalaa' };
+    const { code } = transformSync(codeLiteral, getTestConfig(opts));
+    expect(code).toMatchSnapshot();
+  });
+
+  test('name matches multiple strings - should include logger', () => {
+    const codeLiteral = `
+      const HelloWorld = () => {
+        return <span>Hello World</span>;
+      };
+    `;
+    const opts = { name: 'Hello|Kitty' };
+    const { code } = transformSync(codeLiteral, getTestConfig(opts));
+    expect(code).toMatchSnapshot();
+  });
+
+  test('name is not passed - should include logger', () => {
+    const codeLiteral = `
+      const HelloWorld = () => {
+        return <span>Hello World</span>;
+      };
+    `;
+    const { code } = transformSync(codeLiteral, getTestConfig());
     expect(code).toMatchSnapshot();
   });
 });

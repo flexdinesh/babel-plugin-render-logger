@@ -59,6 +59,36 @@ Use the logger only in `development`.
 }
 ```
 
+### Config
+
+#### name
+
+All components will log by default. You can pass in the component name as a string or regex and only components that match the name will be logged.
+
+Log all components matching the name "Hello"
+
+```json
+{
+  "plugins": [
+    ["react-render-logger", {
+      "name": "Hello"
+    }]
+  ]
+}
+```
+
+Log all components matching the name "Hello" or "Welcome"
+
+```json
+{
+  "plugins": [
+    ["react-render-logger", {
+      "name": "Hello|Welcome"
+    }]
+  ]
+}
+```
+
 ## License
 
 MIT © Dinesh Pandiyan

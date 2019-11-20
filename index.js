@@ -1,3 +1,5 @@
+const { getSafeRegexFromConfig } = require('./util');
+
 const getLogStatement = (t, template, componentName) => {
   const buildLogStatement = template(`console.log(">> RenderLog >>", COMP_NAME);`);
   const logStatement = buildLogStatement({
@@ -37,7 +39,7 @@ function babelPluginReactRenderLogger(babel) {
   return {
     name: 'log-render',
     visitor: {
-      ArrowFunctionExpression(fPath) {
+      ArrowFunctionExpression(fPath, state) {
         let isReactComp = false;
 
         if (fPath.node.body.type === 'BlockStatement') {
@@ -50,40 +52,54 @@ function babelPluginReactRenderLogger(babel) {
 
         if (isReactComp) {
           const componentName = fPath.parentPath.node.id.name;
-          const logSt = getLogStatement(t, template, componentName);
-          fPath.get('body').unshiftContainer('body', logSt);
+          const compNameMatcher = getSafeRegexFromConfig(state.opts);
+
+          if (!compNameMatcher || componentName.match(compNameMatcher)) {
+            const logSt = getLogStatement(t, template, componentName);
+            fPath.get('body').unshiftContainer('body', logSt);
+          }
         }
       },
-      FunctionDeclaration(fPath) {
+      FunctionDeclaration(fPath, state) {
         const isReactComp = isReactComponent(fPath);
 
         if (isReactComp) {
           const componentName = fPath.node.id.name;
-          const logSt = getLogStatement(t, template, componentName);
-          fPath.get('body').unshiftContainer('body', logSt);
+          const compNameMatcher = getSafeRegexFromConfig(state.opts);
+
+          if (!compNameMatcher || componentName.match(compNameMatcher)) {
+            const logSt = getLogStatement(t, template, componentName);
+            fPath.get('body').unshiftContainer('body', logSt);
+          }
         }
       },
-      FunctionExpression(fPath) {
+      FunctionExpression(fPath, state) {
         const isReactComp = isReactComponent(fPath);
 
         if (isReactComp) {
           const componentName = fPath.parentPath.node.id.name;
-          const logSt = getLogStatement(t, template, componentName);
-          fPath.get('body').unshiftContainer('body', logSt);
+          const compNameMatcher = getSafeRegexFromConfig(state.opts);
+
+          if (!compNameMatcher || componentName.match(compNameMatcher)) {
+            const logSt = getLogStatement(t, template, componentName);
+            fPath.get('body').unshiftContainer('body', logSt);
+          }
         }
       },
-      ClassDeclaration(cPath) {
-        // const isReactComp = isReactComponent(cPath);
-
+      ClassDeclaration(cPath, state) {
         cPath.traverse({
           ClassMethod(cmPath) {
             const isReactComp = isReactComponent(cmPath);
 
             if (isReactComp) {
-              const componentName = cPath.node.id.name;
               if (cmPath.node.key.name === 'render') {
-                const logSt = getLogStatement(t, template, componentName);
-                cmPath.get('body').unshiftContainer('body', logSt);
+                const componentName = cPath.node.id.name;
+                const compNameMatcher = getSafeRegexFromConfig(state.opts);
+
+                if (!compNameMatcher || componentName.match(compNameMatcher)) {
+                  const logSt = getLogStatement(t, template, componentName);
+                  cmPath.get('body').unshiftContainer('body', logSt);
+                }
               }
             }
           }
