@@ -1,7 +1,13 @@
 const { getSafeRegexFromConfig } = require('./util');
 
-const getLogStatement = (t, template, componentName) => {
-  const buildLogStatement = template(`console.log(">> RenderLog >>", COMP_NAME);`);
+const getLogStatement = (t, template, componentName, opts = {}) => {
+  let buildLogStatement;
+  if (opts.disableColors) {
+    buildLogStatement = template(`console.log("RenderLog >>", COMP_NAME);`);
+  } else {
+    buildLogStatement = template(`console.log("%c RenderLog >>", "color: hotpink", COMP_NAME);`);
+  }
+
   const logStatement = buildLogStatement({
     COMP_NAME: t.stringLiteral(String(componentName))
   });
@@ -55,7 +61,7 @@ function babelPluginReactRenderLogger(babel) {
           const compNameMatcher = getSafeRegexFromConfig(state.opts);
 
           if (!compNameMatcher || componentName.match(compNameMatcher)) {
-            const logSt = getLogStatement(t, template, componentName);
+            const logSt = getLogStatement(t, template, componentName, state.opts);
             fPath.get('body').unshiftContainer('body', logSt);
           }
         }
@@ -68,7 +74,7 @@ function babelPluginReactRenderLogger(babel) {
           const compNameMatcher = getSafeRegexFromConfig(state.opts);
 
           if (!compNameMatcher || componentName.match(compNameMatcher)) {
-            const logSt = getLogStatement(t, template, componentName);
+            const logSt = getLogStatement(t, template, componentName, state.opts);
             fPath.get('body').unshiftContainer('body', logSt);
           }
         }
@@ -81,7 +87,7 @@ function babelPluginReactRenderLogger(babel) {
           const compNameMatcher = getSafeRegexFromConfig(state.opts);
 
           if (!compNameMatcher || componentName.match(compNameMatcher)) {
-            const logSt = getLogStatement(t, template, componentName);
+            const logSt = getLogStatement(t, template, componentName, state.opts);
             fPath.get('body').unshiftContainer('body', logSt);
           }
         }
@@ -97,7 +103,7 @@ function babelPluginReactRenderLogger(babel) {
                 const compNameMatcher = getSafeRegexFromConfig(state.opts);
 
                 if (!compNameMatcher || componentName.match(compNameMatcher)) {
-                  const logSt = getLogStatement(t, template, componentName);
+                  const logSt = getLogStatement(t, template, componentName, state.opts);
                   cmPath.get('body').unshiftContainer('body', logSt);
                 }
               }

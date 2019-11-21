@@ -8,42 +8,42 @@ exports[`Add log statement based on config name doesn't match component name - s
 
 exports[`Add log statement based on config name is not passed - should include logger 1`] = `
 "const HelloWorld = () => {
-  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
   return React.createElement(\\"span\\", null, \\"Hello World\\");
 };"
 `;
 
 exports[`Add log statement based on config name matches full component name - should include logger 1`] = `
 "const HelloWorld = () => {
-  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
   return React.createElement(\\"span\\", null, \\"Hello World\\");
 };"
 `;
 
 exports[`Add log statement based on config name matches multiple strings - should include logger 1`] = `
 "const HelloWorld = () => {
-  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
   return React.createElement(\\"span\\", null, \\"Hello World\\");
 };"
 `;
 
 exports[`Add log statement based on config name matches part component name - should include logger 1`] = `
 "const HelloWorld = () => {
-  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
   return React.createElement(\\"span\\", null, \\"Hello World\\");
 };"
 `;
 
 exports[`Add log statement to React Components ArrowFunctionExpression with BlockStatement 1`] = `
 "const HelloWorld = () => {
-  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
   return React.createElement(\\"span\\", null, \\"Hello World\\");
 };"
 `;
 
 exports[`Add log statement to React Components ArrowFunctionExpression with implicit return 1`] = `
 "const HelloWorld = props => {
-  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
   return React.createElement(\\"span\\", null, \\"Hello World\\");
 };"
 `;
@@ -51,7 +51,7 @@ exports[`Add log statement to React Components ArrowFunctionExpression with impl
 exports[`Add log statement to React Components Class Component with render method 1`] = `
 "class HelloWorld extends React.Component {
   render() {
-    console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+    console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
     return React.createElement(\\"span\\", null, \\"Hello World\\");
   }
 
@@ -60,14 +60,14 @@ exports[`Add log statement to React Components Class Component with render metho
 
 exports[`Add log statement to React Components FunctionDelaration with BlockStatement 1`] = `
 "function HelloWorld() {
-  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
   return React.createElement(\\"span\\", null, \\"Hello World\\");
 }"
 `;
 
 exports[`Add log statement to React Components FunctionExpression with BlockStatement 1`] = `
 "const HelloWorld = function () {
-  console.log(\\">> RenderLog >>\\", \\"HelloWorld\\");
+  console.log(\\"RenderLog >>\\", \\"HelloWorld\\");
   return React.createElement(\\"span\\", null, \\"Hello World\\");
 };"
 `;

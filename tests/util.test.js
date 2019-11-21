@@ -1,4 +1,4 @@
-import { getSafeRegexFromConfig } from '../util';
+import { getSafeRegexFromConfig } from '../src/util';
 
 describe('test plugin config', () => {
   test('should match all strings when name opt is not passed', () => {
