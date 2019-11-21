@@ -2,7 +2,7 @@ import { transformSync } from '@babel/core';
 import reactRenderLogger from '../src/index';
 
 const getTestConfig = (opts = {}) => ({
-  plugins: ['@babel/plugin-transform-react-jsx', [reactRenderLogger, { disableColors: true, ...opts }]]
+  plugins: ['@babel/plugin-transform-react-jsx', [reactRenderLogger, { disableConsoleStyles: true, ...opts }]]
 });
 
 describe('Add log statement to React Components', () => {

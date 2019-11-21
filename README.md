@@ -89,6 +89,37 @@ Log all components matching the name "Hello" or "Welcome"
 }
 ```
 
+#### disableConsoleStyles
+
+Disable the styles in console statements. To differentiate the log noise, the console statements are colored by default.
+
+```json
+{
+  "plugins": [
+    ["react-render-logger", {
+      "name": "Hello|Welcome",
+      "disableConsoleStyles": true
+    }]
+  ]
+}
+```
+
+#### consoleMethod
+
+Default console method is `info` (`console.info()`). You can choose to use a different method. Accepts `warn`, `error`, `trace`, `info` and `log`;
+
+```json
+{
+  "plugins": [
+    ["react-render-logger", {
+      "name": "Hello|Welcome",
+      "disableConsoleStyles": true,
+      "consoleMethod": "warn"
+    }]
+  ]
+}
+```
+
 ## License
 
 MIT © Dinesh Pandiyan

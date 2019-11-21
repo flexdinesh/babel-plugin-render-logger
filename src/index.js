@@ -2,10 +2,20 @@ const { getSafeRegexFromConfig } = require('./util');
 
 const getLogStatement = (t, template, componentName, opts = {}) => {
   let buildLogStatement;
-  if (opts.disableColors) {
-    buildLogStatement = template(`console.log("RenderLog >>", COMP_NAME);`);
+  let method = 'info';
+  if (
+    opts.consoleMethod === 'log' ||
+    opts.consoleMethod === 'info' ||
+    opts.consoleMethod === 'warn' ||
+    opts.consoleMethod === 'error' ||
+    opts.consoleMethod === 'trace'
+  ) {
+    method = opts.consoleMethod;
+  }
+  if (opts.disableConsoleStyles) {
+    buildLogStatement = template(`console.${method}("RenderLog >>", COMP_NAME);`);
   } else {
-    buildLogStatement = template(`console.log("%c RenderLog >>", "color: hotpink", COMP_NAME);`);
+    buildLogStatement = template(`console.${method}("%c RenderLog >>", "color: hotpink", COMP_NAME);`);
   }
 
   const logStatement = buildLogStatement({
