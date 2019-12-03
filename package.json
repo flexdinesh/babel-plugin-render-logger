@@ -1,5 +1,5 @@
 {
-  "name": "babel-plugin-react-render-logger",
+  "name": "babel-plugin-render-logger",
   "version": "0.1.0",
   "description": "Babel plugin that automatically adds a console statement to React components and makes debugging easier",
   "main": "src/index.js",

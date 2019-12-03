@@ -1,4 +1,4 @@
-# babel-plugin-react-render-logger
+# babel-plugin-render-logger
 
 Babel plugin that automatically adds a console statement to React components and makes debugging easier.
 
@@ -7,7 +7,7 @@ Babel plugin that automatically adds a console statement to React components and
 _NOTE: This package is not published to npm yet_
 
 ```sh
-yarn add --dev babel-plugin-react-render-logger
+yarn add --dev babel-plugin-render-logger
 ```
 
 ## Example
@@ -53,7 +53,7 @@ Use the logger only in `development`.
   "presets": ["react-app"],
   "env": {
     "development": {
-      "plugins": ["react-render-logger"]
+      "plugins": ["render-logger"]
     }
   }
 }
@@ -70,7 +70,7 @@ Log all components matching the name "Hello"
 ```json
 {
   "plugins": [
-    ["react-render-logger", {
+    ["render-logger", {
       "name": "Hello"
     }]
   ]
@@ -82,7 +82,7 @@ Log all components matching the name "Hello" or "Welcome"
 ```json
 {
   "plugins": [
-    ["react-render-logger", {
+    ["render-logger", {
       "name": "Hello|Welcome"
     }]
   ]
@@ -96,7 +96,7 @@ Disable the styles in console statements. To differentiate the log noise, the co
 ```json
 {
   "plugins": [
-    ["react-render-logger", {
+    ["render-logger", {
       "name": "Hello|Welcome",
       "disableConsoleStyles": true
     }]
@@ -111,7 +111,7 @@ Default console method is `info` (`console.info()`). You can choose to use a dif
 ```json
 {
   "plugins": [
-    ["react-render-logger", {
+    ["render-logger", {
       "name": "Hello|Welcome",
       "disableConsoleStyles": true,
       "consoleMethod": "warn"
